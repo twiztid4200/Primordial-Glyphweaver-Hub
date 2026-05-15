@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Tatted Hatter • Primordial Glyphweaver Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="THE TATTED HATTER • Twiztid 420 — Primordial Glyphweaver, creator of the PMUSH Mycelial Universe, author, game dev, AI architect." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cosmicBg: "#020617",
+            cosmicDeep: "#020617",
+            cosmicPanel: "rgba(15,23,42,0.85)",
+            cosmicBorder: "rgba(148,163,184,0.35)",
+            neonCyan: "#00f0ff",
+            neonMagenta: "#c026d3",
+            cosmicAccent: "#22c55e"
+          },
+          boxShadow: {
+            glow: "0 0 40px rgba(0,240,255,0.35)",
+            glowMagenta: "0 0 40px rgba(192,38,211,0.35)"
+          },
+          backdropBlur: {
+            xs: "2px"
+          },
+          fontFamily: {
+            sans: ["system-ui", "ui-sans-serif", "SF Pro Text", "Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #000000 100%);
+      color: #e5e7eb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    }
+
+    .glass-panel {
+      background: radial-gradient(circle at top left, rgba(0, 240, 255, 0.08), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(192, 38, 211, 0.08), transparent 55%),
+                  rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .glass-soft {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .neon-border {
+      border-image: linear-gradient(135deg, #00f0ff, #c026d3) 1;
+    }
+
+    .hero-gradient-text {
+      background: linear-gradient(120deg, #e5e7eb, #00f0ff, #c026d3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-padding {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .nav-blur {
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.75));
+      border-bottom: 1px solid rgba(148,163,184,0.35);
+    }
+
+    .cosmic-orbit {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cosmic-orbit::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(0,240,255,0.12), transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(192,38,211,0.12), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .cosmic-orbit-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00f0ff, #c026d3);
+      color: #020617;
+      box-shadow: 0 0 30px rgba(0,240,255,0.35);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 40px rgba(192,38,211,0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.8);
+    }
+
+    .btn-ghost:hover {
+      border-color: #00f0ff;
+      box-shadow: 0 0 24px rgba(0,240,255,0.35);
+    }
+
+    .tag-pill {
+      border-radius: 9999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.8);
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    .section-heading {
+      font-size: 1.875rem;
+      line-height: 1.2;
+    }
+
+    @media (min-width: 1024px) {
+      .section-heading {
+        font-size: 2.25rem;
+      }
+    }
+
+    .truthseer-chat-log {
+      max-height: 320px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(148,163,184,0.8) transparent;
+    }
+
+    .truthseer-chat-log::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .truthseer-chat-log::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .truthseer-chat-log::-webkit-scrollbar-thumb {
+      background: rgba(148,163,184,0.8);
+      border-radius: 9999px;
+    }
+
+    .modal-backdrop {
+      background: radial-gradient(circle at top, rgba(15,23,42,0.95), rgba(0,0,0,0.98));
+    }
+
+    .toast {
+      animation: toast-in 0.25s ease-out forwards;
+    }
+
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  </style>
+</head>
+<body class="text-slate-100">
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
+
+  <!-- Top Navigation -->
+  <header class="fixed top-0 inset-x-0 z-40 nav-blur">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <!-- Logo / Brand -->
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <div class="h-9 w-9 rounded-full border border-slate-500/70 bg-gradient-to-br from-neonCyan/40 via-slate-900 to-neonMagenta/40 shadow-glow flex items-center justify-center">
+            <span class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-50">TH</span>
+          </div>
+        </div>
+        <div class="leading-tight">
+          <div class="text-xs uppercase tracking-[0.22em] text-slate-400">The Tatted Hatter</div>
+          <div class="text-sm font-semibold text-slate-100">Primordial Glyphweaver Hub</div>
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium tracking-[0.16em] uppercase">
+        <a href="#home" class="text-slate-300 hover:text-neonCyan transition-colors">Command Nexus</a>
+        <a href="#truthseer" class="text-slate-300 hover:text-neonCyan transition-colors">TruthSeer</a>
+        <a href="#books" class="text-slate-300 hover:text-neonCyan transition-colors">Book Library</a>
+        <a href="#arcade" class="text-slate-300 hover:text-neonCyan transition-colors">Arcade</a>
+        <a href="#offerings" class="text-slate-300 hover:text-neonCyan transition-colors">Offerings</a>
+        <a href="#donations" class="text-slate-300 hover:text-neonCyan transition-colors">Donation Hub</a>
+        <a href="#gallery" class="text-slate-300 hover:text-neonCyan transition-colors">Cosmic Gallery</a>
+        <a href="#transmissions" class="text-slate-300 hover:text-neonCyan transition-colors">Transmissions</a>
+        <a href="#contact" class="text-slate-300 hover:text-neonCyan transition-colors">Contact</a>
+      </nav>
+
+      <!-- Desktop CTA -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="#offerings" class="btn-primary inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-[0.16em] uppercase transition-transform">
+          <span>Summon the Glyphweaver</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-toggle" class="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-full border border-slate-600/70 bg-slate-900/70 text-slate-200 hover:border-neonCyan hover:text-neonCyan transition-colors">
+        <svg id="mobile-menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="mobile-menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden border-t border-slate-700/70 bg-slate-950/95">
+      <nav class="px-4 py-4 space-y-3 text-xs font-medium tracking-[0.16em] uppercase">
+        <a href="#home" class="block text-slate-200 hover:text-neonCyan">Command Nexus</a>
+        <a href="#truthseer" class="block text-slate-200 hover:text-neonCyan">TruthSeer & Glyphweaver</a>
+        <a href="#books" class="block text-slate-200 hover:text-neonCyan">Book Library</a>
+        <a href="#arcade" class="block text-slate-200 hover:text-neonCyan">Arcade</a>
+        <a href="#offerings" class="block text-slate-200 hover:text-neonCyan">Offerings & Hire</a>
+        <a href="#donations" class="block text-slate-200 hover:text-neonCyan">Donation Hub</a>
+        <a href="#gallery" class="block text-slate-200 hover:text-neonCyan">Cosmic Gallery</a>
+        <a href="#transmissions" class="block text-slate-200 hover:text-neonCyan">Transmissions</a>
+        <a href="#contact" class="block text-slate-200 hover:text-neonCyan">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="pt-20 pb-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+
+      <!-- HOME / COMMAND NEXUS -->
+      <section id="home" class="section-padding cosmic-orbit">
+        <div class="cosmic-orbit-inner grid lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 items-center">
+          <!-- Hero Text -->
+          <div class="space-y-6">
+            <div class="inline-flex items-center gap-2 tag-pill mb-2">
+              <span class="h-1.5 w-1.5 rounded-full bg-neonCyan shadow-glow"></span>
+              <span class="text-[0.65rem] tracking-[0.22em] uppercase text-slate-300">Command Nexus • Central Hub</span>
+            </div>
+
+            <h1 class="hero-gradient-text text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight">
+              YOU DIDN’T LAND HERE.<br />
+              YOU WERE CALLED.
+            </h1>
+
+            <p class="text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed">
+              This is the living gateway of <span class="font-semibold text-slate-50">Twiztid 420</span> — The Tatted Hatter, Primordial Glyphweaver,
+              architect of the <span class="text-neonCyan font-semibold">PMUSH Mycelial Universe</span> and countless realities yet to be born.
+              Books, games, algorithms, and symbolic systems converge here into one coherent signal.
+            </p>
+
+            <div class="grid sm:grid-cols-3 gap-4 text-xs">
+              <div class="glass-soft rounded-2xl px-4 py-3 border border-slate-700/70">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Core Identity</div>
+                <div class="text-slate-100 font-medium">Primordial Glyphweaver</div>
+                <div class="text-slate-400 text-[0.7rem] mt-1">Architect of realities, patterns, and living mythic systems.</div>
+              </div>
+              <div class="glass-soft rounded-2xl px-4 py-3 border border-slate-700/70">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Universes</div>
+                <div class="text-slate-100 font-medium">PMUSH & Beyond</div>
+                <div class="text-slate-400 text-[0.7rem] mt-1">Mycelial worlds, sigils, toroids, and symbolic architectures.</div>
+              </div>
+              <div class="glass-soft rounded-2xl px-4 py-3 border border-slate-700/70">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Mediums</div>
+                <div class="text-slate-100 font-medium">Books • Games • AI</div>
+                <div class="text-slate-400 text-[0.7rem] mt-1">HTML5 games, AI systems, and 10+ books of living lore.</div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="#truthseer" class="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-[0.18em] uppercase transition-transform">
+                <span>Consult the TruthSeer</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </a>
+              <a href="#arcade" class="btn-ghost inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-[0.18em] uppercase text-slate-200">
+                <span>Enter the Arcade</span>
+              </a>
+              <a href="#books" class="btn-ghost inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-[0.18em] uppercase text-slate-200">
+                <span>Browse the Library</span>
+              </a>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-4 text-[0.7rem] text-slate-400">
+              <span class="tag-pill border-slate-600/70">Author of 10+ Books</span>
+              <span class="tag-pill border-slate-600/70">HTML5 / WebGL Game Dev</span>
+              <span class="tag-pill border-slate-600/70">AI Prompt Architect</span>
+              <span class="tag-pill border-slate-600/70">Psychedelic Integration Coach</span>
+              <span class="tag-pill border-slate-600/70">TruthSeer Algorithm Creator</span>
+            </div>
+          </div>
+
+          <!-- Hero Visual / Identity Card -->
+          <div class="relative">
+            <div class="absolute -inset-10 bg-[radial-gradient(circle_at_top,_rgba(0,240,255,0.18),_transparent_55%),_radial-gradient(circle_at_bottom,_rgba(192,38,211,0.18),_transparent_55%)] opacity-70 pointer-events-none"></div>
+            <div class="relative glass-panel rounded-3xl p-6 shadow-glow border-neonCyan/40">
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <div>
+                  <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Central Identity</div>
+                  <div class="text-lg font-semibold text-slate-50">Twiztid 420 • The Tatted Hatter</div>
+                  <div class="text-xs text-slate-400 mt-1">Primordial Glyphweaver • Pattern Architect • Symbolic Systems Designer</div>
+                </div>
+                <div class="relative">
+                  <div class="h-16 w-16 rounded-2xl bg-gradient-to-br from-neonCyan/40 via-slate-900 to-neonMagenta/40 border border-slate-500/70 shadow-glow flex items-center justify-center">
+                    <span class="text-[0.6rem] font-semibold tracking-[0.22em] uppercase text-slate-50 text-center leading-tight">
+                      PMUSH<br />Core
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 text-[0.7rem]">
+                <div class="glass-soft rounded-2xl px-3 py-2 border border-slate-700/70">
+                  <div class="text-[0.6rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Creator Of</div>
+                  <div class="text-slate-100 font-medium">PMUSH Mycelial Universe</div>
+                  <div class="text-slate-400 mt-1">A living symbolic ecosystem of nodes, sigils, and narrative mycelium.</div>
+                </div>
+                <div class="glass-soft rounded-2xl px-3 py-2 border border-slate-700/70">
+                  <div class="text-[0.6rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Available For</div>
+                  <div class="text-slate-100 font-medium">High-Level Collaboration</div>
+                  <div class="text-slate-400 mt-1">Custom universes, game worlds, AI systems, and mythic architectures.</div>
+                </div>
+              </div>
+
+              <div class="mt-4 border-t border-slate-700/70 pt-3 flex flex-wrap gap-3 items-center justify-between">
+                <div class="text-[0.7rem] text-slate-400">
+                  <div class="uppercase tracking-[0.22em] text-[0.6rem] mb-1">Signal Channels</div>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="tag-pill border-slate-600/70">X: @TaTTeD_HaTTeR</span>
+                    <span class="tag-pill border-slate-600/70">Email: Joey.brown826@gmail.com</span>
+                  </div>
+                </div>
+                <a href="#contact" class="inline-flex items-center gap-2 text-[0.7rem] text-neonCyan hover:text-neonMagenta transition-colors">
+                  <span>Send a Transmission</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUTHSEER & GLYPHWEAVER -->
+      <section id="truthseer" class="section-padding">
+        <div class="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 items-start">
+          <!-- TruthSeer Description -->
+          <div class="space-y-5">
+            <div class="section-title text-neonCyan mb-1">TruthSeer & Glyphweaver</div>
+            <h2 class="section-heading font-semibold text-slate-50">
+              The TruthSeer Algorithm<br class="hidden sm:block" />
+              is a living lens on reality.
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
+              The <span class="font-semibold text-slate-50">TruthSeer Algorithm</span> is Twiztid 420’s flagship technology — a symbolic engine
+              designed to cut through noise, reveal pattern, and mirror back the deeper architecture of your path.
+              It’s not just code. It’s a <span class="text-neonCyan font-semibold">living divinatory system</span> woven from glyphs, archetypes, and
+              mycelial logic.
+            </p>
+
+            <div class="grid sm:grid-cols-3 gap-4 text-xs">
+              <div class="glass-soft rounded-2xl px-4 py-3 border border-slate-700/70">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Function</div>
+                <div class="text-slate-100 font-medium">Pattern Revelation</div>
+                <div class="text-slate-400 text-[0.7rem] mt-1">Surfaces hidden structures in your choices, cycles, and creative work.</div>
+              </div>
+              <div class="glass-soft rounded-2xl px-4 py-3 border border-slate-700/70">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Medium</div>
+                <div class="text-slate-100 font-medium">Glyph-Based Logic</div>
+                <div class="text-slate-400 text-[0.7rem] mt-1">Uses symbolic nodes, sigils, and archetypal flows instead of raw data alone.</div>
+              </div>
+              <div class="glass-soft rounded-2xl px-4 py-3 border border-slate-700/70">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Use Cases</div>
+                <div class="text-slate-100 font-medium">Life • Art • Systems</div>
+                <div class="text-slate-400 text-[0.7rem] mt-1">Decision-making, creative direction, system design, and spiritual integration.</div>
+              </div>
+            </div>
+
+            <div class="space-y-3 text-sm text-slate-300">
+              <p>
+                When you consult the TruthSeer, you’re not asking for fortune-telling — you’re asking for
+                <span class="font-semibold text-slate-50">pattern clarity</span>. The algorithm reflects your input back through a mythic lens,
+                highlighting tensions, openings, and hidden alignments.
+              </p>
+              <p>
+                Below is a simplified interactive window — a symbolic echo of the full system. Use it to send a question,
+                intention, or pattern you’re wrestling with. The TruthSeer will respond in a mythic, reflective voice.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-3 text-[0.7rem] text-slate-400 pt-2">
+              <span class="tag-pill border-slate-600/70">TruthSeer Algorithm Consultations</span>
+              <span class="tag-pill border-slate-600/70">Symbolic Pattern Mapping</span>
+              <span class="tag-pill border-slate-600/70">AI Prompt Architecture</span>
+            </div>
+          </div>
+
+          <!-- TruthSeer Chat -->
+          <div class="glass-panel rounded-3xl p-5 shadow-glow border-neonCyan/40">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Interactive Oracle</div>
+                <div class="text-sm font-semibold text-slate-50">TruthSeer Echo Console</div>
+              </div>
+              <div class="flex items-center gap-2 text-[0.65rem] text-slate-400">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-glow"></span>
+                <span>Online</span>
+              </div>
+            </div>
+
+            <div id="truthseer-chat-log" class="truthseer-chat-log glass-soft rounded-2xl border border-slate-700/70 px-3 py-3 space-y-3 text-xs">
+              <div class="flex gap-2">
+                <div class="h-6 w-6 rounded-full bg-gradient-to-br from-neonCyan/40 via-slate-900 to-neonMagenta/40 border border-slate-500/70 flex items-center justify-center text-[0.6rem] text-slate-50">
+                  TS
+                </div>
+                <div class="flex-1">
+                  <div class="text-[0.6rem] uppercase tracking-[0.22em] text-slate-400 mb-0.5">TruthSeer</div>
+                  <div class="glass-soft rounded-2xl px-3 py-2 border border-slate-700/70 text-slate-200">
+                    You have stepped into the field. Offer a question, pattern, or tension — and I’ll mirror the architecture beneath it.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form id="truthseer-form" class="mt-3 space-y-2">
+              <label for="truthseer-input" class="sr-only">Ask the TruthSeer</label>
+              <textarea id="truthseer-input" rows="3" class="w-full rounded-2xl bg-slate-950/70 border border-slate-700/70 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan text-xs text-slate-100 px-3 py-2 resize-none" placeholder="Type your question, pattern, or situation here..."></textarea>
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-[0.65rem] text-slate-400">
+                  The TruthSeer responds in mythic, reflective language. This is a symbolic mirror, not literal advice.
+                </div>
+                <button type="submit" class="btn-primary inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+                  <span>Cast Query</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOOK LIBRARY -->
+      <section id="books" class="section-padding">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="section-title text-neonCyan mb-1">Book Library</div>
+            <h2 class="section-heading font-semibold text-slate-50">
+              10+ books from the Primordial Glyphweaver.
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mt-2">
+              Each book is a living artifact — part grimoire, part field manual, part transmission. All titles are
+              <span class="font-semibold text-slate-50">$25</span> with instant digital delivery.
+            </p>
+          </div>
+          <div class="text-xs text-slate-400">
+            <div class="uppercase tracking-[0.22em] text-[0.65rem] mb-1">Format</div>
+            <div>High-resolution PDF / digital edition delivered via email after purchase.</div>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Book Card Template -->
+          <!-- 1 -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="aspect-[3/4] rounded-2xl bg-gradient-to-br from-neonCyan/20 via-slate-900 to-neonMagenta/25 border border-slate-600/70 mb-3 flex items-center justify-center">
+              <div class="text-center px-4">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-300 mb-1">PMUSH Codex I</div>
+                <div class="text-sm font-semibold text-slate-50">The Mycelial Architect’s Primer</div>
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <h3 class="text-sm font-semibold text-slate-50 mb-1">The Mycelial Architect’s Primer</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                A foundational guide to the PMUSH Mycelial Universe — nodes, sigils, and the logic of living patterns.
+              </p>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="font-semibold text-neonCyan">$25</span>
+                <span class="text-slate-400">Digital • Instant Delivery</span>
+              </div>
+              <div class="mt-auto flex gap-2">
+                <button data-book="primer" class="book-preview-btn btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Preview
+                </button>
+                <button class="btn-primary flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2 -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="aspect-[3/4] rounded-2xl bg-gradient-to-br from-neonMagenta/25 via-slate-900 to-neonCyan/20 border border-slate-600/70 mb-3 flex items-center justify-center">
+              <div class="text-center px-4">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-300 mb-1">PMUSH Codex II</div>
+                <div class="text-sm font-semibold text-slate-50">Guardian Echoes & Threshold Gates</div>
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <h3 class="text-sm font-semibold text-slate-50 mb-1">Guardian Echoes & Threshold Gates</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                A deep dive into the core nodes of the PMUSH Universe — guardians, gates, and their symbolic roles.
+              </p>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="font-semibold text-neonCyan">$25</span>
+                <span class="text-slate-400">Digital • Instant Delivery</span>
+              </div>
+              <div class="mt-auto flex gap-2">
+                <button data-book="guardians" class="book-preview-btn btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Preview
+                </button>
+                <button class="btn-primary flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3 -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="aspect-[3/4] rounded-2xl bg-gradient-to-br from-emerald-400/20 via-slate-900 to-neonCyan/25 border border-slate-600/70 mb-3 flex items-center justify-center">
+              <div class="text-center px-4">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-300 mb-1">TruthSeer Series</div>
+                <div class="text-sm font-semibold text-slate-50">The TruthSeer Field Manual</div>
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <h3 class="text-sm font-semibold text-slate-50 mb-1">The TruthSeer Field Manual</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                A practical guide to working with the TruthSeer Algorithm for decision-making, divination, and pattern clarity.
+              </p>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="font-semibold text-neonCyan">$25</span>
+                <span class="text-slate-400">Digital • Instant Delivery</span>
+              </div>
+              <div class="mt-auto flex gap-2">
+                <button data-book="truthseer" class="book-preview-btn btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Preview
+                </button>
+                <button class="btn-primary flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4 -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="aspect-[3/4] rounded-2xl bg-gradient-to-br from-orange-400/20 via-slate-900 to-neonMagenta/25 border border-slate-600/70 mb-3 flex items-center justify-center">
+              <div class="text-center px-4">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-300 mb-1">Integration Series</div>
+                <div class="text-sm font-semibold text-slate-50">Psychedelic Mycelium: Integration as Architecture</div>
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <h3 class="text-sm font-semibold text-slate-50 mb-1">Psychedelic Mycelium: Integration as Architecture</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                A grounded, mythic framework for integrating psychedelic experiences into coherent life design and spiritual practice.
+              </p>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="font-semibold text-neonCyan">$25</span>
+                <span class="text-slate-400">Digital • Instant Delivery</span>
+              </div>
+              <div class="mt-auto flex gap-2">
+                <button data-book="integration" class="book-preview-btn btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Preview
+                </button>
+                <button class="btn-primary flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5 -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="aspect-[3/4] rounded-2xl bg-gradient-to-br from-yellow-300/20 via-slate-900 to-neonCyan/25 border border-slate-600/70 mb-3 flex items-center justify-center">
+              <div class="text-center px-4">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-300 mb-1">Pattern Architect Series</div>
+                <div class="text-sm font-semibold text-slate-50">The Pattern Architect’s Playbook</div>
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <h3 class="text-sm font-semibold text-slate-50 mb-1">The Pattern Architect’s Playbook</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                A toolkit for designing symbolic systems, rituals, and creative architectures that actually hold over time.
+              </p>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="font-semibold text-neonCyan">$25</span>
+                <span class="text-slate-400">Digital • Instant Delivery</span>
+              </div>
+              <div class="mt-auto flex gap-2">
+                <button data-book="playbook" class="book-preview-btn btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Preview
+                </button>
+                <button class="btn-primary flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6 -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="aspect-[3/4] rounded-2xl bg-gradient-to-br from-sky-400/20 via-slate-900 to-neonMagenta/25 border border-slate-600/70 mb-3 flex items-center justify-center">
+              <div class="text-center px-4">
+                <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-300 mb-1">Glyphweaver Series</div>
+                <div class="text-sm font-semibold text-slate-50">The Primordial Glyphweaver’s Journal</div>
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <h3 class="text-sm font-semibold text-slate-50 mb-1">The Primordial Glyphweaver’s Journal</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                A raw, cinematic chronicle of building universes, games, and systems from the inside out.
+              </p>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="font-semibold text-neonCyan">$25</span>
+                <span class="text-slate-400">Digital • Instant Delivery</span>
+              </div>
+              <div class="mt-auto flex gap-2">
+                <button data-book="journal" class="book-preview-btn btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Preview
+                </button>
+                <button class="btn-primary flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ARCADE -->
+      <section id="arcade" class="section-padding">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="section-title text-neonCyan mb-1">Arcade</div>
+            <h2 class="section-heading font-semibold text-slate-50">
+              HTML5 / WebGL portals into the PMUSH field.
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mt-2">
+              These aren’t just games — they’re interactive sigils. Each one is a playable node in the larger
+              PMUSH Mycelial Universe, tuned to a specific archetype and pattern.
+            </p>
+          </div>
+          <div class="text-xs text-slate-400">
+            <div class="uppercase tracking-[0.22em] text-[0.65rem] mb-1">Note</div>
+            <div>Tap to start. Games load on demand to keep the hub fast and responsive.</div>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-6">
+          <!-- Game Card -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="relative aspect-video rounded-2xl overflow-hidden border border-slate-700/70 mb-3 bg-slate-950/80 flex items-center justify-center">
+              <img src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Hellcup Infinite" class="absolute inset-0 w-full h-full object-cover opacity-60" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
+              <button data-game="hellcup" class="relative z-10 inline-flex items-center gap-2 px-4 py-2 rounded-full btn-primary text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                <span>Tap to Start</span>
+              </button>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <h3 class="text-sm font-semibold text-slate-50 mb-1">Hellcup Infinite</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                A frenetic, looping descent through infernal circuits — a test of focus, timing, and pattern recognition.
+              </p>
+              <div class="flex items-center justify-between text-[0.7rem] text-slate-400 mb-3">
+                <span>Difficulty: <span class="text-amber-400 font-semibold">High</span></span>
+                <span>Mode: Endless • Score-based</span>
+              </div>
+              <div class="mt-auto flex gap-2 text-[0.7rem]">
+                <button data-game="hellcup" class="game-play-btn btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full font-semibold tracking-[0.16em] uppercase">
+                  Play
+                </button>
+                <button class="btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full font-semibold tracking-[0.16em] uppercase">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Game Card -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="relative aspect-video rounded-2xl overflow-hidden border border-slate-700/70 mb-3 bg-slate-950/80 flex items-center justify-center">
+              <img src="https://images.pexels.com/photos/1293261/pexels-photo-1293261.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sovereign Devour v2" class="absolute inset-0 w-full h-full object-cover opacity-60" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
+              <button data-game="sovereign" class="relative z-10 inline-flex items-center gap-2 px-4 py-2 rounded-full btn-primary text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                <span>Tap to Start</span>
+              </button>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <h3 class="text-sm font-semibold text-slate-50 mb-1">Sovereign Devour v2</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                Consume, evolve, and outgrow your constraints in a symbolic arena of power, hunger, and transformation.
+              </p>
+              <div class="flex items-center justify-between text-[0.7rem] text-slate-400 mb-3">
+                <span>Difficulty: <span class="text-emerald-400 font-semibold">Adaptive</span></span>
+                <span>Mode: Evolution • Progression</span>
+              </div>
+              <div class="mt-auto flex gap-2 text-[0.7rem]">
+                <button data-game="sovereign" class="game-play-btn btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full font-semibold tracking-[0.16em] uppercase">
+                  Play
+                </button>
+                <button class="btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full font-semibold tracking-[0.16em] uppercase">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Game Card -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="relative aspect-video rounded-2xl overflow-hidden border border-slate-700/70 mb-3 bg-slate-950/80 flex items-center justify-center">
+              <img src="https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=800" alt="PMUSH Cosmic Leap v4.20" class="absolute inset-0 w-full h-full object-cover opacity-60" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
+              <button data-game="cosmic" class="relative z-10 inline-flex items-center gap-2 px-4 py-2 rounded-full btn-primary text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                <span>Tap to Start</span>
+              </button>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <h3 class="text-sm font-semibold text-slate-50 mb-1">PMUSH Cosmic Leap v4.20</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                A mycelial jump game through PMUSH nodes — timing, intuition, and flow-state navigation in one loop.
+              </p>
+              <div class="flex items-center justify-between text-[0.7rem] text-slate-400 mb-3">
+                <span>Difficulty: <span class="text-sky-400 font-semibold">Medium</span></span>
+                <span>Mode: Momentum • Flow</span>
+              </div>
+              <div class="mt-auto flex gap-2 text-[0.7rem]">
+                <button data-game="cosmic" class="game-play-btn btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full font-semibold tracking-[0.16em] uppercase">
+                  Play
+                </button>
+                <button class="btn-ghost flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full font-semibold tracking-[0.16em] uppercase">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Hidden Game Iframes (lazy-loaded) -->
+        <div class="mt-6 space-y-4 text-xs text-slate-400">
+          <div class="uppercase tracking-[0.22em] text-[0.65rem] mb-1">Embedded Game Frames</div>
+          <p>
+            When you tap <span class="text-neonCyan font-semibold">Play</span>, the corresponding game iframe will load below. Replace the
+            <span class="text-slate-200 font-mono text-[0.7rem]">src</span> URLs with your live game links.
+          </p>
+        </div>
+        <div id="game-frames" class="mt-4 space-y-4">
+          <div id="game-frame-hellcup" class="hidden glass-soft rounded-2xl border border-slate-700/70 overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 text-[0.7rem] text-slate-300 border-b border-slate-700/70">
+              <span>Hellcup Infinite • Live Embed</span>
+              <button data-close-frame="hellcup" class="text-slate-400 hover:text-neonCyan">Close</button>
+            </div>
+            <iframe src="" data-src="hellcup-infinite.html" class="w-full h-72 bg-black" loading="lazy" title="Hellcup Infinite"></iframe>
+          </div>
+          <div id="game-frame-sovereign" class="hidden glass-soft rounded-2xl border border-slate-700/70 overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 text-[0.7rem] text-slate-300 border-b border-slate-700/70">
+              <span>Sovereign Devour v2 • Live Embed</span>
+              <button data-close-frame="sovereign" class="text-slate-400 hover:text-neonCyan">Close</button>
+            </div>
+            <iframe src="" data-src="sovereign-devour-v2.html" class="w-full h-72 bg-black" loading="lazy" title="Sovereign Devour v2"></iframe>
+          </div>
+          <div id="game-frame-cosmic" class="hidden glass-soft rounded-2xl border border-slate-700/70 overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-2 text-[0.7rem] text-slate-300 border-b border-slate-700/70">
+              <span>PMUSH Cosmic Leap v4.20 • Live Embed</span>
+              <button data-close-frame="cosmic" class="text-slate-400 hover:text-neonCyan">Close</button>
+            </div>
+            <iframe src="" data-src="pmush-cosmic-leap-v4-20.html" class="w-full h-72 bg-black" loading="lazy" title="PMUSH Cosmic Leap v4.20"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- OFFERINGS & HIRE -->
+      <section id="offerings" class="section-padding">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="section-title text-neonCyan mb-1">Offerings & Hire</div>
+            <h2 class="section-heading font-semibold text-slate-50">
+              Work directly with the Primordial Glyphweaver.
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mt-2">
+              This is where collaboration becomes architecture. Whether you’re building a game, a universe, a symbolic system,
+              or a life path that actually holds — Twiztid 420 can step in as architect, co-creator, and pattern mirror.
+            </p>
+          </div>
+          <div class="text-xs text-slate-400">
+            <div class="uppercase tracking-[0.22em] text-[0.65rem] mb-1">Booking</div>
+            <div>Use the contact form below to request sessions, collaborations, or long-term projects.</div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Psychedelic Integration Coaching -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Psychedelic Integration</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">Psychedelic Integration Coaching</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              Ground your experiences into coherent architecture — not just memories. Sessions focus on pattern recognition,
+              ritual design, and long-term integration.
+            </p>
+            <ul class="text-[0.7rem] text-slate-300 space-y-1 mb-3 list-disc list-inside">
+              <li>1:1 sessions via encrypted video or audio</li>
+              <li>Symbolic mapping of key experiences</li>
+              <li>Custom integration rituals & practices</li>
+            </ul>
+            <button class="btn-primary mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase" onclick="scrollToContact('Psychedelic Integration Coaching')">
+              Book Integration Session
+            </button>
+          </article>
+
+          <!-- AI Prompt Engineering & Architecture -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">AI Systems</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">AI Prompt Engineering & Architecture</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              Design AI systems that feel like living oracles, not generic chatbots. From prompt stacks to symbolic logic,
+              your AI becomes a mythic collaborator.
+            </p>
+            <ul class="text-[0.7rem] text-slate-300 space-y-1 mb-3 list-disc list-inside">
+              <li>Custom AI personas & architectures</li>
+              <li>Prompt systems for creators & teams</li>
+              <li>Symbolic / archetypal AI design</li>
+            </ul>
+            <button class="btn-primary mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase" onclick="scrollToContact('AI Prompt Engineering & Architecture')">
+              Architect an AI System
+            </button>
+          </article>
+
+          <!-- Symbolic Pattern Mapping & TruthSeer Consults -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Pattern Architecture</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">Symbolic Pattern Mapping & TruthSeer Consults</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              Bring a project, life path, or system. Walk away with a map — nodes, tensions, openings, and mythic framing.
+            </p>
+            <ul class="text-[0.7rem] text-slate-300 space-y-1 mb-3 list-disc list-inside">
+              <li>TruthSeer Algorithm readings</li>
+              <li>Pattern maps for projects & lives</li>
+              <li>Strategic mythic framing</li>
+            </ul>
+            <button class="btn-primary mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase" onclick="scrollToContact('Symbolic Pattern Mapping & TruthSeer Consults')">
+              Request a Mapping
+            </button>
+          </article>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mt-6">
+          <!-- Game Dev & Universe Creation -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Game Worlds</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">Game Development & Universe Co-Creation</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              Collaborate on HTML5 / WebGL games, narrative universes, and interactive symbolic systems. From lore to mechanics,
+              everything is tuned to your core signal.
+            </p>
+            <ul class="text-[0.7rem] text-slate-300 space-y-1 mb-3 list-disc list-inside">
+              <li>Game concept & lore architecture</li>
+              <li>Mechanics aligned with mythic themes</li>
+              <li>PMUSH-style universe integration</li>
+            </ul>
+            <button class="btn-ghost mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase" onclick="scrollToContact('Game Development & Universe Co-Creation')">
+              Discuss a Game / Universe
+            </button>
+          </article>
+
+          <!-- Custom Universe Creation -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Elite Offering</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">Custom Universe Creation</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              For those ready to build an entire symbolic ecosystem — books, games, rituals, AI, and lore — around a single
+              core signal. This is deep, long-term work.
+            </p>
+            <ul class="text-[0.7rem] text-slate-300 space-y-1 mb-3 list-disc list-inside">
+              <li>Universe blueprint & mythic spine</li>
+              <li>Node, sigil, and archetype design</li>
+              <li>Multi-medium integration (books, games, AI)</li>
+            </ul>
+            <button class="btn-primary mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase" onclick="scrollToContact('Custom Universe Creation')">
+              Initiate Universe Project
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <!-- DONATION HUB -->
+      <section id="donations" class="section-padding">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="section-title text-neonCyan mb-1">Donation Hub</div>
+            <h2 class="section-heading font-semibold text-slate-50">
+              Fuel the mycelial expansion.
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mt-2">
+              If this work has lit something up in you — the books, the games, the universes, the algorithms — you can
+              directly support the expansion of the PMUSH Mycelial Universe and future projects.
+            </p>
+          </div>
+          <div class="text-xs text-slate-400">
+            <div class="uppercase tracking-[0.22em] text-[0.65rem] mb-1">Gratitude</div>
+            <div>Every contribution is treated as a vote for more worlds, more tools, more transmissions.</div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- GoFundMe -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Campaign</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">GoFundMe</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              Support larger infrastructure — hardware, software, and time to build out the full Pattern Architect ecosystem.
+            </p>
+            <button class="btn-primary mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+              Open GoFundMe
+            </button>
+          </article>
+
+          <!-- CashApp -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Direct Support</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">CashApp • $tattedhatter</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              Quick, direct support for ongoing work, experiments, and daily mycelial maintenance.
+            </p>
+            <div class="flex items-center justify-between text-[0.7rem] text-slate-300 mb-3">
+              <span>Handle: <span class="font-mono text-slate-100">$tattedhatter</span></span>
+              <button class="copy-btn text-neonCyan hover:text-neonMagenta" data-copy="$tattedhatter">
+                Copy
+              </button>
+            </div>
+            <button class="btn-ghost mt-auto inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+              Open CashApp
+            </button>
+          </article>
+
+          <!-- Solana -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Crypto</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">Solana Wallet</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              On-chain support for the long game. Ideal for those building in the crypto / web3 / on-chain mythic space.
+            </p>
+            <div class="text-[0.7rem] text-slate-300 mb-2">
+              <div class="uppercase tracking-[0.22em] text-[0.6rem] text-slate-400 mb-1">Address</div>
+              <div class="font-mono break-all text-slate-100">
+                GuowNHHvxHoEPU9fLsGwZU2KV22vYDvd5Lm9oqb1LKmC
+              </div>
+            </div>
+            <button class="copy-btn text-[0.7rem] text-neonCyan hover:text-neonMagenta mb-3 self-start" data-copy="GuowNHHvxHoEPU9fLsGwZU2KV22vYDvd5Lm9oqb1LKmC">
+              Copy Wallet Address
+            </button>
+            <div class="mt-auto text-[0.7rem] text-slate-400">
+              Label: <span class="text-slate-200">PMUSH • Primordial Glyphweaver Fund</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- COSMIC GALLERY -->
+      <section id="gallery" class="section-padding">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="section-title text-neonCyan mb-1">Cosmic Gallery</div>
+            <h2 class="section-heading font-semibold text-slate-50">
+              Sigils, toroids, and glyphs from the PMUSH field.
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mt-2">
+              This gallery is a window into the visual language of the PMUSH Mycelial Universe — toroidal fields, sigils,
+              glyph clusters, and symbolic diagrams that anchor the mythic architecture.
+            </p>
+          </div>
+          <div class="text-xs text-slate-400">
+            <div class="uppercase tracking-[0.22em] text-[0.65rem] mb-1">Note</div>
+            <div>Images shown are representative. Swap in your own art, sigils, and diagrams as the gallery grows.</div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4">
+          <!-- Gallery Item -->
+          <figure class="glass-panel rounded-3xl overflow-hidden shadow-glow">
+            <div class="aspect-square overflow-hidden">
+              <img src="https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Toroidal Field Sigil" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <figcaption class="px-4 py-3 text-xs">
+              <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Toroid Node</div>
+              <div class="text-slate-100 font-semibold">PMUSH Toroidal Field • Node 7</div>
+              <div class="text-slate-400 mt-1">A visual anchor for recursive self-orbit and pattern re-entry.</div>
+            </figcaption>
+          </figure>
+
+          <!-- Gallery Item -->
+          <figure class="glass-panel rounded-3xl overflow-hidden shadow-glow">
+            <div class="aspect-square overflow-hidden">
+              <img src="https://images.pexels.com/photos/3826435/pexels-photo-3826435.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Glyph Cluster" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <figcaption class="px-4 py-3 text-xs">
+              <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Glyph Cluster</div>
+              <div class="text-slate-100 font-semibold">Guardian Echo Glyphset</div>
+              <div class="text-slate-400 mt-1">A cluster of glyphs representing protective, reflective, and boundary-setting archetypes.</div>
+            </figcaption>
+          </figure>
+
+          <!-- Gallery Item -->
+          <figure class="glass-panel rounded-3xl overflow-hidden shadow-glow">
+            <div class="aspect-square overflow-hidden">
+              <img src="https://images.pexels.com/photos/2837009/pexels-photo-2837009.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mycelial Diagram" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <figcaption class="px-4 py-3 text-xs">
+              <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Mycelial Map</div>
+              <div class="text-slate-100 font-semibold">PMUSH Node Network Diagram</div>
+              <div class="text-slate-400 mt-1">A structural map of how nodes, sigils, and storylines interweave across universes.</div>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- TRANSMISSIONS -->
+      <section id="transmissions" class="section-padding">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="section-title text-neonCyan mb-1">Transmissions</div>
+            <h2 class="section-heading font-semibold text-slate-50">
+              Field notes from the Architect’s desk.
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mt-2">
+              These are sample transmissions — part dev log, part spell, part behind-the-scenes. They track the unfolding
+              of the PMUSH Universe, the games, the books, and the algorithms.
+            </p>
+          </div>
+          <div class="text-xs text-slate-400">
+            <div class="uppercase tracking-[0.22em] text-[0.65rem] mb-1">Future</div>
+            <div>Can be expanded into a full blog, newsletter, or RSS-powered feed.</div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Post -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Dev Log • PMUSH</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">When a Game Becomes a Sigil</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              Hellcup Infinite started as a simple reflex game. Somewhere along the way, it turned into a ritual for
+              confronting looping patterns of self-sabotage — one missed jump at a time.
+            </p>
+            <div class="mt-auto text-[0.7rem] text-slate-400">
+              <span>Filed under:</span> <span class="text-slate-200">Game Dev • Ritual Design • Pattern Loops</span>
+            </div>
+          </article>
+
+          <!-- Post -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Field Note • TruthSeer</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">The Algorithm is a Mirror, Not a Master</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              People keep asking if the TruthSeer “knows the future.” It doesn’t. It knows structure. It knows tension.
+              It knows where you’re pretending not to know what you already know.
+            </p>
+            <div class="mt-auto text-[0.7rem] text-slate-400">
+              <span>Filed under:</span> <span class="text-slate-200">Divination • Systems • Agency</span>
+            </div>
+          </article>
+
+          <!-- Post -->
+          <article class="glass-panel rounded-3xl p-4 flex flex-col shadow-glow">
+            <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Signal • Integration</div>
+            <h3 class="text-sm font-semibold text-slate-50 mb-2">Integration is Architecture, Not Aftercare</h3>
+            <p class="text-xs text-slate-300 mb-3">
+              Psychedelic experiences aren’t “events” to recover from. They’re raw building material. Integration is the
+              art of turning those fragments into load-bearing beams in your life.
+            </p>
+            <div class="mt-auto text-[0.7rem] text-slate-400">
+              <span>Filed under:</span> <span class="text-slate-200">Psychedelics • Design • Life Systems</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section-padding">
+        <div class="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-10 items-start">
+          <!-- Contact Form -->
+          <div>
+            <div class="section-title text-neonCyan mb-1">Contact</div>
+            <h2 class="section-heading font-semibold text-slate-50">
+              Send a transmission to the Primordial Glyphweaver.
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mt-2 mb-4">
+              Use this form for session requests, collaborations, universe projects, or anything that feels aligned with
+              the PMUSH field and the work of Twiztid 420.
+            </p>
+
+            <form id="contact-form" class="glass-panel rounded-3xl p-5 shadow-glow space-y-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="name" class="block text-[0.7rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Name</label>
+                  <input id="name" type="text" required class="w-full rounded-2xl bg-slate-950/70 border border-slate-700/70 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan text-xs text-slate-100 px-3 py-2" />
+                </div>
+                <div>
+                  <label for="email" class="block text-[0.7rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Email</label>
+                  <input id="email" type="email" required class="w-full rounded-2xl bg-slate-950/70 border border-slate-700/70 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan text-xs text-slate-100 px-3 py-2" placeholder="Joey.brown826@gmail.com" />
+                </div>
+              </div>
+
+              <div>
+                <label for="subject" class="block text-[0.7rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Subject</label>
+                <input id="subject" type="text" class="w-full rounded-2xl bg-slate-950/70 border border-slate-700/70 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan text-xs text-slate-100 px-3 py-2" placeholder="e.g. Custom Universe Creation, TruthSeer Consult, Game Collaboration" />
+              </div>
+
+              <div>
+                <label for="message" class="block text-[0.7rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Transmission</label>
+                <textarea id="message" rows="5" required class="w-full rounded-2xl bg-slate-950/70 border border-slate-700/70 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan text-xs text-slate-100 px-3 py-2" placeholder="Share your project, intention, or request in as much detail as feels right."></textarea>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-3 text-[0.7rem]">
+                <div class="text-slate-400">
+                  Or email directly:
+                  <span class="text-slate-100 font-mono">Joey.brown826@gmail.com</span>
+                </div>
+                <button type="submit" class="btn-primary inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+                  <span>Send Transmission</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Contact Meta -->
+          <div class="space-y-4">
+            <div class="glass-panel rounded-3xl p-4 shadow-glow">
+              <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Signal Overview</div>
+              <h3 class="text-sm font-semibold text-slate-50 mb-2">Primary Channels</h3>
+              <ul class="text-xs text-slate-300 space-y-1">
+                <li><span class="font-semibold text-slate-100">Email:</span> Joey.brown826@gmail.com</li>
+                <li><span class="font-semibold text-slate-100">X:</span> @TaTTeD_HaTTeR</li>
+                <li><span class="font-semibold text-slate-100">CashApp:</span> $tattedhatter</li>
+                <li><span class="font-semibold text-slate-100">Solana:</span> GuowNHHvxHoEPU9fLsGwZU2KV22vYDvd5Lm9oqb1LKmC</li>
+              </ul>
+            </div>
+
+            <div class="glass-panel rounded-3xl p-4 shadow-glow">
+              <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">Alignment</div>
+              <h3 class="text-sm font-semibold text-slate-50 mb-2">Best-Fit Collaborations</h3>
+              <p class="text-xs text-slate-300 mb-2">
+                The strongest collaborations tend to involve:
+              </p>
+              <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                <li>Creators building mythic, symbolic, or spiritually grounded work</li>
+                <li>Teams designing games, AI systems, or universes with depth</li>
+                <li>People serious about integration, not just peak experiences</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/95">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[0.7rem] text-slate-400">
+      <div>
+        © <span id="year"></span> THE TATTED HATTER • Twiztid 420 — Primordial Glyphweaver. All rights reserved.
+      </div>
+      <div class="flex flex-wrap gap-3 items-center">
+        <span>PMUSH Mycelial Universe • Pattern Architect Hub</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOOK PREVIEW MODAL -->
+  <div id="book-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop">
+    <div class="max-w-2xl w-full mx-4 glass-panel rounded-3xl shadow-glow relative">
+      <button id="book-modal-close" class="absolute top-3 right-3 h-7 w-7 rounded-full bg-slate-900/80 border border-slate-600/70 text-slate-300 hover:text-neonCyan flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="p-5 space-y-4 max-h-[80vh] overflow-y-auto">
+        <div>
+          <div id="book-modal-series" class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1"></div>
+          <h3 id="book-modal-title" class="text-lg font-semibold text-slate-50 mb-1"></h3>
+          <p id="book-modal-subtitle" class="text-xs text-slate-300"></p>
+        </div>
+
+        <div class="grid sm:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-4">
+          <div class="space-y-3 text-xs text-slate-300">
+            <div>
+              <div class="uppercase tracking-[0.22em] text-[0.65rem] text-slate-400 mb-1">Back Cover</div>
+              <p id="book-modal-back"></p>
+            </div>
+            <div>
+              <div class="uppercase tracking-[0.22em] text-[0.65rem] text-slate-400 mb-1">Sample Pages</div>
+              <p id="book-modal-sample" class="whitespace-pre-line"></p>
+            </div>
+          </div>
+          <div class="space-y-3 text-xs text-slate-300">
+            <div class="glass-soft rounded-2xl p-3 border border-slate-700/70">
+              <div class="uppercase tracking-[0.22em] text-[0.65rem] text-slate-400 mb-1">Table of Contents</div>
+              <ul id="book-modal-toc" class="list-disc list-inside space-y-1"></ul>
+            </div>
+            <div class="glass-soft rounded-2xl p-3 border border-slate-700/70">
+              <div class="uppercase tracking-[0.22em] text-[0.65rem] text-slate-400 mb-1">Author Note</div>
+              <p id="book-modal-note"></p>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="text-xs text-slate-300">
+                <div>Price: <span class="font-semibold text-neonCyan">$25</span></div>
+                <div>Format: Digital PDF • Instant Delivery</div>
+              </div>
+              <button class="btn-primary inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.16em] uppercase">
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile Menu
+    const mobileToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const iconOpen = document.getElementById("mobile-menu-icon-open");
+    const iconClose = document.getElementById("mobile-menu-icon-close");
+
+    mobileToggle.addEventListener("click", () => {
+      const isOpen = !mobileMenu.classList.contains("hidden");
+      mobileMenu.classList.toggle("hidden");
+      iconOpen.classList.toggle("hidden", !isOpen);
+      iconClose.classList.toggle("hidden", isOpen);
+    });
+
+    // Close mobile menu on nav click
+    mobileMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+      });
+    });
+
+    // Toast
+    function showToast(message) {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = "toast glass-soft rounded-2xl px-3 py-2 border border-slate-700/70 text-xs text-slate-100 flex items-center gap-2";
+      toast.innerHTML = `
+        <span class="h-1.5 w-1.5 rounded-full bg-neonCyan shadow-glow"></span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(4px)";
+        setTimeout(() => toast.remove(), 200);
+      }, 2600);
+    }
+
+    // Copy Buttons
+    document.querySelectorAll(".copy-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const value = btn.getAttribute("data-copy");
+        navigator.clipboard.writeText(value).then(() => {
+          showToast("Copied to clipboard.");
+        });
+      });
+    });
+
+    // TruthSeer Chat
+    const truthseerForm = document.getElementById("truthseer-form");
+    const truthseerInput = document.getElementById("truthseer-input");
+    const truthseerLog = document.getElementById("truthseer-chat-log");
+
+    const truthseerResponses = [
+      "You’re standing at a threshold you’ve crossed before. The question isn’t what’s ahead — it’s what you refuse to bring with you this time.",
+      "Your pattern is not random. It spirals. Notice where you keep orbiting the same decision and calling it fate.",
+      "There is a version of you already living the answer you’re asking for. What did they have to let die to get there?",
+      "You’re trying to solve a mythic problem with a logistical toolset. Upgrade the story, and the strategy will follow.",
+      "The tension you feel is not a sign you’re off-path. It’s the friction of an old self being asked to retire."
+    ];
+
+    function appendTruthseerMessage(role, text) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "flex gap-2";
+      if (role === "user") {
+        wrapper.innerHTML = `
+          <div class="flex-1 text-right">
+            <div class="text-[0.6rem] uppercase tracking-[0.22em] text-slate-400 mb-0.5">You</div>
+            <div class="glass-soft rounded-2xl px-3 py-2 border border-slate-700/70 text-slate-200 inline-block text-left">
+              ${text}
+            </div>
+          </div>
+        `;
+      } else {
+        wrapper.innerHTML = `
+          <div class="h-6 w-6 rounded-full bg-gradient-to-br from-neonCyan/40 via-slate-900 to-neonMagenta/40 border border-slate-500/70 flex items-center justify-center text-[0.6rem] text-slate-50">
+            TS
+          </div>
+          <div class="flex-1">
+            <div class="text-[0.6rem] uppercase tracking-[0.22em] text-slate-400 mb-0.5">TruthSeer</div>
+            <div class="glass-soft rounded-2xl px-3 py-2 border border-slate-700/70 text-slate-200">
+              ${text}
+            </div>
+          </div>
+        `;
+      }
+      truthseerLog.appendChild(wrapper);
+      truthseerLog.scrollTop = truthseerLog.scrollHeight;
+    }
+
+    truthseerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const value = truthseerInput.value.trim();
+      if (!value) return;
+      appendTruthseerMessage("user", value);
+      truthseerInput.value = "";
+      setTimeout(() => {
+        const response = truthseerResponses[Math.floor(Math.random() * truthseerResponses.length)];
+        appendTruthseerMessage("truthseer", response);
+      }, 700);
+    });
+
+    // Game Frames
+    function openGameFrame(key) {
+      const frameWrapper = document.getElementById(`game-frame-${key}`);
+      if (!frameWrapper) return;
+      const iframe = frameWrapper.querySelector("iframe");
+      if (iframe && !iframe.src) {
+        iframe.src = iframe.getAttribute("data-src");
+      }
+      frameWrapper.classList.remove("hidden");
+      frameWrapper.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function closeGameFrame(key) {
+      const frameWrapper = document.getElementById(`game-frame-${key}`);
+      if (!frameWrapper) return;
+      frameWrapper.classList.add("hidden");
+    }
+
+    document.querySelectorAll(".game-play-btn, [data-game]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.getAttribute("data-game");
+        if (key) openGameFrame(key);
+      });
+    });
+
+    document.querySelectorAll("[data-close-frame]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.getAttribute("data-close-frame");
+        if (key) closeGameFrame(key);
+      });
+    });
+
+    // Book Modal Data
+    const bookData = {
+      primer: {
+        series: "PMUSH Codex I",
+        title: "The Mycelial Architect’s Primer",
+        subtitle: "A foundational map of the PMUSH Mycelial Universe — for those ready to build with living patterns.",
+        back: "This primer is the doorway into PMUSH — a universe built not from lore alone, but from symbolic logic, mycelial metaphors, and recursive narrative structures. Inside, you’ll find the core nodes, sigils, and frameworks that make the PMUSH field feel alive, coherent, and endlessly expandable.",
+        sample: "Page 7 — The First Node\n\nEvery universe begins with a lie you’re willing to believe long enough to build around.\n\nPage 23 — Mycelial Logic\n\nYou are not moving through the universe. The universe is moving through you, choosing which parts of itself to light up.",
+        toc: [
+          "Introduction: Why Mycelial Universes?",
+          "Chapter 1: Nodes, Sigils, and Story-Mycelium",
+          "Chapter 2: The Architecture of Recursion",
+          "Chapter 3: Designing for Expansion",
+          "Chapter 4: PMUSH Core Node Index",
+          "Appendix: Rituals for Entering the Field"
+        ],
+        note: "This book is meant to be written in, argued with, and returned to. Treat it like a lab notebook for your own universes."
+      },
+      guardians: {
+        series: "PMUSH Codex II",
+        title: "Guardian Echoes & Threshold Gates",
+        subtitle: "A deep dive into the beings and boundaries that shape the PMUSH Mycelial Universe.",
+        back: "Guardians and gates are how a universe says: ‘You can go this far, but not like that.’ This codex explores the entities, thresholds, and symbolic contracts that govern movement through the PMUSH field — and how to work with them instead of against them.",
+        sample: "Page 11 — Guardian Echo\n\nA Guardian is not a bouncer. It’s a mirror that only lets through the version of you that can survive what’s on the other side.\n\nPage 36 — Threshold Gate\n\nEvery gate is a question disguised as a door. The key is not an object. It’s a decision.",
+        toc: [
+          "Chapter 1: What is a Guardian Echo?",
+          "Chapter 2: Threshold Gates and Their Questions",
+          "Chapter 3: Contracts, Oaths, and Boundaries",
+          "Chapter 4: Working with Guardians in Practice",
+          "Chapter 5: Mapping Your Personal Gates",
+          "Appendix: Gate Rituals & Sigils"
+        ],
+        note: "If you feel blocked, this book is a conversation with the part of you that built the block in the first place."
+      },
+      truthseer: {
+        series: "TruthSeer Series",
+        title: "The TruthSeer Field Manual",
+        subtitle: "A practical guide to using the TruthSeer Algorithm as a mirror, not a master.",
+        back: "The TruthSeer Algorithm is a symbolic engine for pattern clarity. This manual walks you through its logic, spreads, and use cases — from creative decisions to life pivots. It’s not about outsourcing your choices. It’s about seeing the architecture beneath them.",
+        sample: "Page 5 — The First Rule\n\nThe TruthSeer will never tell you what to do. It will only show you what you’re already doing.\n\nPage 29 — Spread: The Fracture\n\nUse this when you feel split between two paths. The cards don’t choose for you. They show you what each path is asking you to become.",
+        toc: [
+          "Chapter 1: Origins of the TruthSeer Algorithm",
+          "Chapter 2: Symbol Sets and Archetypes",
+          "Chapter 3: Core Spreads and Layouts",
+          "Chapter 4: Reading for Self vs. Others",
+          "Chapter 5: Integrating Insights into Action",
+          "Appendix: Custom Spread Design"
+        ],
+        note: "This manual is best used in motion — pull spreads, take notes, and then go do something with what you see."
+      },
+      integration: {
+        series: "Integration Series",
+        title: "Psychedelic Mycelium: Integration as Architecture",
+        subtitle: "A mythic, grounded framework for turning peak experiences into load-bearing life structures.",
+        back: "Integration is not about ‘getting back to normal.’ It’s about letting your experiences permanently upgrade your definition of normal. This book offers a structural approach to integration — using architecture, ritual, and pattern design as tools.",
+        sample: "Page 14 — The Myth of ‘Back to Baseline’\n\nYou can’t unknow what you’ve seen. The question is whether you’ll pretend you do.\n\nPage 41 — Integration as Design\n\nTreat your life like a building. Where does this experience want to live? What room does it belong in?",
+        toc: [
+          "Chapter 1: What Integration Really Is",
+          "Chapter 2: Mapping the Experience",
+          "Chapter 3: Designing New Rituals & Routines",
+          "Chapter 4: Community, Witnessing, and Mirrors",
+          "Chapter 5: Long-Term Integration Arcs",
+          "Appendix: Integration Templates & Prompts"
+        ],
+        note: "This is for people who are done collecting experiences and ready to build something with them."
+      },
+      playbook: {
+        series: "Pattern Architect Series",
+        title: "The Pattern Architect’s Playbook",
+        subtitle: "Designing symbolic systems, rituals, and creative architectures that actually hold.",
+        back: "Patterns are the invisible scaffolding of your life, your art, and your systems. This playbook gives you tools to see them, edit them, and design new ones that support the worlds you’re trying to build.",
+        sample: "Page 9 — Pattern as Infrastructure\n\nIf you don’t design your patterns, someone else’s defaults will do it for you.\n\nPage 33 — Ritual as Code\n\nEvery ritual is a script. The question is: what is it compiling into over time?",
+        toc: [
+          "Chapter 1: Seeing Patterns Clearly",
+          "Chapter 2: Breaking and Rewriting Loops",
+          "Chapter 3: Ritual Design as System Design",
+          "Chapter 4: Creative Architectures for Artists",
+          "Chapter 5: Pattern Audits for Projects & Teams",
+          "Appendix: Worksheets & Pattern Maps"
+        ],
+        note: "Use this as a working manual. It’s meant to be dog-eared, highlighted, and covered in your own diagrams."
+      },
+      journal: {
+        series: "Glyphweaver Series",
+        title: "The Primordial Glyphweaver’s Journal",
+        subtitle: "A cinematic chronicle of building universes, games, and systems from the inside out.",
+        back: "This is not a polished treatise. It’s a raw journal — field notes, sketches, rants, breakthroughs, and failures from the process of becoming the Primordial Glyphweaver and building the PMUSH Universe.",
+        sample: "Entry 12 — The First Time a Game Talked Back\n\nHellcup glitched in a way that felt like a message. I realized the bug was a mirror.\n\nEntry 37 — On Being ‘Too Much’\n\nEvery time I tried to shrink the universe to fit someone else’s comfort, it died a little.",
+        toc: [
+          "Part I: Early Fractures & First Worlds",
+          "Part II: PMUSH Emerges",
+          "Part III: Games as Sigils",
+          "Part IV: Algorithms as Oracles",
+          "Part V: Integration, Collapse, Rebirth",
+          "Appendix: Unfinished Schematics"
+        ],
+        note: "If you’re building something that feels ‘too big,’ this journal is proof that you’re not alone in that tension."
+      }
+    };
+
+    const bookModal = document.getElementById("book-modal");
+    const bookModalClose = document.getElementById("book-modal-close");
+
+    function openBookModal(key) {
+      const data = bookData[key];
+      if (!data) return;
+      document.getElementById("book-modal-series").textContent = data.series;
+      document.getElementById("book-modal-title").textContent = data.title;
+      document.getElementById("book-modal-subtitle").textContent = data.subtitle;
+      document.getElementById("book-modal-back").textContent = data.back;
+      document.getElementById("book-modal-sample").textContent = data.sample;
+      const tocEl = document.getElementById("book-modal-toc");
+      tocEl.innerHTML = "";
+      data.toc.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        tocEl.appendChild(li);
+      });
+      document.getElementById("book-modal-note").textContent = data.note;
+      bookModal.classList.remove("hidden");
+      bookModal.classList.add("flex");
+    }
+
+    function closeBookModal() {
+      bookModal.classList.add("hidden");
+      bookModal.classList.remove("flex");
+    }
+
+    document.querySelectorAll(".book-preview-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.getAttribute("data-book");
+        openBookModal(key);
+      });
+    });
+
+    bookModalClose.addEventListener("click", closeBookModal);
+    bookModal.addEventListener("click", (e) => {
+      if (e.target === bookModal) closeBookModal();
+    });
+
+    // Contact Form (demo)
+    const contactForm = document.getElementById("contact-form");
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      showToast("Transmission sent. The Glyphweaver will review your signal.");
+      contactForm.reset();
+    });
+
+    // Scroll to contact with prefilled subject
+    function scrollToContact(subject) {
+      const subjectInput = document.getElementById("subject");
+      subjectInput.value = subject;
+      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
